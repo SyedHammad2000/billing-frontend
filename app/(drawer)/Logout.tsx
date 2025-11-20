@@ -10,7 +10,7 @@ const Logout = () => {
   }, []);
   const handleLogout = async () => {
     await AsyncStorage.clear();
-    router.push("/screens/HomeScreen");
+    router.push("/");
   };
   return (
     <View>

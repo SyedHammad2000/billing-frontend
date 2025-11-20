@@ -10,10 +10,11 @@ export default function DrawerLayout() {
         drawerStyle: { width: 200 },
         headerShown: false,
         drawerLabelStyle: { fontSize: 16 },
-  
       }}
-
-      
-    />
+    >
+      <Drawer.Screen name="Product" />
+      <Drawer.Screen name="AddProduct" />
+      <Drawer.Screen name="Logout" />
+    </Drawer>
   );
 }
