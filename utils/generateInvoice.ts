@@ -65,8 +65,7 @@ const generateInvoice = async (data: {
       <body style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
         <div style="text-align: center; margin-bottom: 20px;">
           ${data.logoUri ? `<img src="${data?.logoUri}" style="width: 120px; height: auto;" />` : ""}
-          <h1 style="margin: 0;">Sudsy Aura</h1>
-          <p style="margin: 0;">Feel the essence, Embrace the aura</p>
+          <h1 style="margin: 0;">Feel the essence, Embrace the aura</h1>
           <hr style="margin-top: 10px;"/>
         </div>
 
