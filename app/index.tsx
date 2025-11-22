@@ -85,12 +85,18 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
-        source={require("@/assets/images/water.jpg")}
+        source={require("@/assets/images/hudwater.jpeg")}
         style={{ flex: 1 }}
-        resizeMode="cover"
+        resizeMode="stretch"
+        imageStyle={{ opacity: 0.5 }}
       >
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            alignItems: "center",
+            marginBottom: 50,
+          }}
         >
           <TouchableOpacity
             style={{

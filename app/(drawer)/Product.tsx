@@ -1,17 +1,17 @@
 import { DrawerActions } from "@react-navigation/native";
-import { useNavigation, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation, useRouter } from "expo-router";
+import React, { useCallback } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import axios from "axios";
 import { FlatList } from "react-native-gesture-handler";
 import { BASE_URL } from "@/constants/api";
 import ".././../global.css";
-import Product_id from "@/components/Product_id";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 type Products = {
   _id: string;
   name: string;
   price: number;
+  litre: string;
   image?: string;
 };
 
@@ -23,11 +23,14 @@ const Product = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
 
-  useEffect(() => {
-    const token = AsyncStorage.getItem("hudwater");
-    console.log("Token:", token);
-    GetAll();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const token = AsyncStorage.getItem("hudwater");
+      console.log("Token:", token);
+      GetAll();
+    }, [])
+  );
+
   const GetAll = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/api/v1/`);
@@ -55,7 +58,7 @@ const Product = () => {
         style={{
           alignItems: "center",
           marginTop: 20,
-          marginBottom: 60,
+          marginBottom: 120,
 
           // width: 200,
         }}
@@ -74,7 +77,7 @@ const Product = () => {
                 margin: 10,
                 width: 150,
               }}
-              onPress={() => router.push(`/product/${item?._id}`)}
+              onPress={() => router.push(`/screens/product/${item?._id}`)}
               // onPress={() => {
               //   router.push(`${item?._id}`);
               // }}
@@ -95,7 +98,15 @@ const Product = () => {
               <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
                 {item?.name}
               </Text>
-              <Text>{item?.price}</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ fontWeight: "bold" }}>Rs:{item?.price}</Text>
+                <Text style={{ fontWeight: "bold" }}>Ml:{item?.litre}</Text>
+              </View>
             </TouchableOpacity>
           )}
         />

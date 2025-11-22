@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
@@ -15,6 +15,15 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  useEffect(() => {
+    const checkLogin = async () => {
+      const token = await AsyncStorage.getItem("hudwater");
+      if (token) {
+        router.replace("/(drawer)/Product");
+      }
+    };
+    checkLogin();
+  }, []);
 
   const handleLogin = async () => {
     if (!email || !password) {
