@@ -15,10 +15,12 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+console.log("Screen Loaded: [id]");
+
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
   const [product, setProduct] = useState<any>(null);
-  const [quantity, setQuantity] = useState<any>();
+  const [quantity, setQuantity] = useState<any>("");
   const [customername, setCustomername] = useState("");
 
   const fetchProduct = async () => {
@@ -29,38 +31,38 @@ const ProductDetail = () => {
       console.log("Error fetching product:", error);
     }
   };
+
   useEffect(() => {
     fetchProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
   console.log(id, product);
 
   const handleOrder = async () => {
     try {
       if (!product) return;
 
-      // Step 1: Save invoice to database
       const res = await axios.post(`${BASE_URL}/api/v1/invoice`, {
         productId: product._id,
         quantity,
         customername,
-        price: product?.price,
-        litre: product?.litre, // make sure backend expects number
+        price: product.price,
+        litre: product.litre,
       });
 
       console.log("Invoice saved:", res.data);
 
-      // Step 2: Generate PDF invoice
       const pdfPath = await generateInvoice({
         productName: product.name,
         price: product.price,
-        quantity: quantity || 1, // if quantity is not provided, default to 1
+        quantity: quantity || 1,
         customerName: customername,
-        litre: product?.litre,
+        litre: product.litre,
         logoUri:
           "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
       });
 
-      // Step 3: Clear form fields
       setQuantity("");
       setCustomername("");
 
@@ -80,11 +82,15 @@ const ProductDetail = () => {
       }}
     >
       <StatusBar barStyle="dark-content" />
-      <ImageBackground
-        source={{ uri: product?.image }}
-        style={{ flex: 1, height: "60%" }}
-        resizeMode="cover"
-      />
+
+      {product && (
+        <ImageBackground
+          source={{ uri: product.image }}
+          style={{ flex: 1, height: "100%" }}
+          resizeMode="cover"
+        />
+      )}
+
       <TouchableOpacity
         style={{
           position: "absolute",
@@ -109,6 +115,7 @@ const ProductDetail = () => {
           Back
         </Text>
       </TouchableOpacity>
+
       <TextInput
         value={quantity}
         onChangeText={setQuantity}
@@ -125,6 +132,7 @@ const ProductDetail = () => {
           color: "black",
         }}
       />
+
       <TextInput
         value={customername}
         onChangeText={setCustomername}
@@ -141,9 +149,9 @@ const ProductDetail = () => {
           color: "black",
         }}
       />
+
       <View
         style={{
-          // flex: 1,
           padding: 20,
           width: "80%",
           backgroundColor: "grey",
@@ -155,14 +163,16 @@ const ProductDetail = () => {
         <Text style={{ fontSize: 30, fontWeight: "bold" }}>
           Name: {product?.name}
         </Text>
+
         <Text style={{ fontSize: 30, marginTop: 10, fontWeight: "bold" }}>
           Price: {product?.price}
         </Text>
+
         <Text style={{ fontSize: 30, marginTop: 10, fontWeight: "bold" }}>
-          {" "}
           {product?.litre}
         </Text>
       </View>
+
       <Pressable onPress={handleOrder}>
         <Text
           style={{

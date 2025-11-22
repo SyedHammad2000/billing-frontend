@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {  View } from "react-native";
+
+console.log("Screen Loaded Log Out");
 
 const Logout = () => {
   const router = useRouter();
@@ -12,16 +14,7 @@ const Logout = () => {
     await AsyncStorage.clear();
     router.push("/");
   };
-  return (
-    <View>
-      {/* <TouchableOpacity
-        onPress={() => {
-          console.log("pressed");
-          handleLogout();
-        }}
-      ></TouchableOpacity> */}
-    </View>
-  );
+  return <View></View>;
 };
 
 export default Logout;

@@ -82,16 +82,14 @@ const generateInvoice = async (data: {
               <th style="border: 1px solid #ddd; padding: 8px;">Litre</th>
               <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
               <th style="border: 1px solid #ddd; padding: 8px;">Price</th>
-              <th style="border: 1px solid #ddd; padding: 8px;">Subtotal</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.customerName}</td>
             <td style="border: 1px solid #ddd; padding: 8px;">${data.productName}</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">${data.litre}</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">${data.price}</td>
-              <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.litre}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price}</td>
             </tr>
           </tbody>
         </table>

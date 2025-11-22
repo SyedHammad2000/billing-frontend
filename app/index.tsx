@@ -1,50 +1,4 @@
-// // app/index.tsx
-// import { Text, View } from "react-native";
 
-// export default function Home() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//       <Text>Welcome to the Home Page!</Text>
-//     </View>
-//   );
-// }
-
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { Stack } from "expo-router";
-// import { useEffect, useState } from "react";
-// import { ActivityIndicator, View } from "react-native";
-
-// export default function RootLayout() {
-//   const [loading, setLoading] = useState(true);
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-//   useEffect(() => {
-//     const checkLogin = async () => {
-//       const token = await AsyncStorage.getItem("hudwater");
-//       await setIsLoggedIn(!!token);
-//       setLoading(false);
-//     };
-//     checkLogin();
-//   }, []);
-
-//   if (loading) {
-//     return (
-//       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         <ActivityIndicator size="large" color="#007bff" />
-//       </View>
-//     );
-//   }
-
-//   return (
-//     <Stack screenOptions={{ headerShown: false }}>
-//       {isLoggedIn ? (
-//         <Stack.Screen name="(drawer)" />
-//       ) : (
-//         <Stack.Screen name="screens/HomeScreen" />
-//       )}
-//     </Stack>
-//   );
-// }
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -56,6 +10,9 @@ import {
   View,
   ActivityIndicator,
 } from "react-native";
+
+console.log("Screen Loaded: HomeScreen index"); // change for each screen
+
 
 const HomeScreen: React.FC = () => {
   const router = useRouter();

@@ -10,6 +10,11 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
+
+console.log("Screen Loaded: loginscreen"); // change for each screen
+
+
+
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");

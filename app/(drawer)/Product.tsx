@@ -7,6 +7,9 @@ import { FlatList } from "react-native-gesture-handler";
 import { BASE_URL } from "@/constants/api";
 import ".././../global.css";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+console.log("Screen Loaded Product");
+
 type Products = {
   _id: string;
   name: string;

@@ -1,5 +1,10 @@
 import { Drawer } from "expo-router/drawer";
 
+
+console.log("Screen Loaded: _layout"); // change for each screen
+
+
+
 export default function DrawerLayout() {
   return (
     <Drawer
