@@ -53,7 +53,7 @@ const Product = () => {
     <>
       <View style={{ marginTop: 40 }} className="bg-black">
         <Text style={{ color: "red", margin: 10, fontSize: 16 }}>
-          API URL: {`${BASE_URL}/api/v1/`}
+          API URL: {`${BASE_URL}/api/v1`}
         </Text>
         <TouchableOpacity
           onPress={openDrawer}
