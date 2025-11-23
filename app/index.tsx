@@ -37,11 +37,11 @@ const HomeScreen: React.FC = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1,backgroundColor:"#3D74B6" }} >
       <ImageBackground
         source={require("@/assets/images/hudwater.jpeg")}
-        style={{ flex: 1 }}
-        resizeMode="stretch"
+        style={{ flex: 1,height:"100%" }}
+        resizeMode="contain"
       >
         <View
           style={{

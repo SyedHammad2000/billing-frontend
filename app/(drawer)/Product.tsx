@@ -4,9 +4,9 @@ import React, { useCallback } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import axios from "axios";
 import { FlatList } from "react-native-gesture-handler";
-import { BASE_URL } from "@/constants/api";
 import ".././../global.css";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_URL } from "@/constants/api";
 
 console.log("Screen Loaded Product");
 
@@ -41,7 +41,6 @@ const Product = () => {
       const res = await axios.get(
         `https://billing-backend-two.vercel.app/api/v1`
       );
-
       console.log(res);
       setProduct(res.data);
     } catch (error) {
@@ -52,20 +51,16 @@ const Product = () => {
   return (
     <>
       <View style={{ marginTop: 40 }} className="bg-black">
-        <Text style={{ color: "red", margin: 10, fontSize: 16 }}>
-          API URL: {`${BASE_URL}/api/v1`}
-        </Text>
         <TouchableOpacity
           onPress={openDrawer}
           style={{ position: "absolute", left: 10 }}
         >
           <Text style={{ fontSize: 32 }}>☰</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => GetAll()}>
-          <View style={{ alignItems: "center" }}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>Products</Text>
-          </View>
-        </TouchableOpacity>
+
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ fontSize: 30, fontWeight: "bold" }}>Products</Text>
+        </View>
       </View>
       <View
         style={{

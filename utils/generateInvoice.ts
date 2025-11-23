@@ -39,7 +39,6 @@
 
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
-import { Image } from "react-native";
 
 const generateInvoice = async (data: {
   productName: string;
@@ -65,7 +64,7 @@ const generateInvoice = async (data: {
       <body style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
         <div style="text-align: center; margin-bottom: 20px;">
           ${data.logoUri ? `<img src="${data?.logoUri}" style="width: 120px; height: auto;" />` : ""}
-          <h1 style="margin: 0;">Feel the essence, Embrace the aura</h1>
+          <h1 style="margin: 0;">Make Your Own Bottle</h1>
           <hr style="margin-top: 10px;"/>
         </div>
 
@@ -81,6 +80,7 @@ const generateInvoice = async (data: {
               <th style="border: 1px solid #ddd; padding: 8px;">Litre</th>
               <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
               <th style="border: 1px solid #ddd; padding: 8px;">Price</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -89,14 +89,10 @@ const generateInvoice = async (data: {
             <td style="border: 1px solid #ddd; padding: 8px;">${data.litre}</td>
             <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity}</td>
             <td style="border: 1px solid #ddd; padding: 8px;">${data.price}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price * data.quantity}</td>
             </tr>
           </tbody>
         </table>
-
-        <div style="text-align: right; margin-bottom: 40px;">
-          <p><strong>Total:</strong> ${data.price * data.quantity}</p>
-        </div>
-
         <div style="text-align: center; border-top: 1px solid #ddd; padding-top: 10px;">
           <p>Thank you for your purchase!</p>
         </div>

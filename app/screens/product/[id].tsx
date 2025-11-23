@@ -34,7 +34,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetchProduct();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   console.log(id, product);
@@ -52,7 +52,6 @@ const ProductDetail = () => {
       });
 
       console.log("Invoice saved:", res.data);
-
       const pdfPath = await generateInvoice({
         productName: product.name,
         price: product.price,
@@ -62,16 +61,18 @@ const ProductDetail = () => {
         logoUri:
           "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
       });
-
+      if (res.status == 200) {
+        Alert.alert("Success", "Invoice saved successfully in Database");
+      }
       setQuantity("");
       setCustomername("");
-
       Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
     } catch (error) {
       console.log("Error creating invoice:", error);
       Alert.alert("Error", "Failed to create invoice");
     }
   };
+  // const GenerateInvoice = async () => {};
 
   return (
     <SafeAreaView
@@ -172,23 +173,26 @@ const ProductDetail = () => {
           {product?.litre}
         </Text>
       </View>
-
-      <Pressable onPress={handleOrder}>
-        <Text
-          style={{
-            backgroundColor: "black",
-            padding: 10,
-            borderRadius: 10,
-            color: "white",
-            fontSize: 20,
-            width: "30%",
-            marginHorizontal: "auto",
-            marginBottom: 20,
-          }}
-        >
-          Generate Bill
-        </Text>
-      </Pressable>
+      <View
+        style={{ alignItems: "center", display: "flex", flexDirection: "row" }}
+      >
+        <Pressable onPress={handleOrder} style={{ alignItems: "center",margin:"auto" }}>
+          <Text
+            style={{
+              backgroundColor: "black",
+              padding: 10,
+              borderRadius: 10,
+              color: "white",
+              fontSize: 20,
+              width: "50%",
+              marginHorizontal: "auto",
+              marginBottom: 20,
+            }}
+          >
+            Save Invoice in Database
+          </Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
