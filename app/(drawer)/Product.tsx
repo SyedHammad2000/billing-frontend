@@ -36,8 +36,7 @@ const Product = () => {
 
   const GetAll = async () => {
     try {
-      const res = await axios
-        .get(`${BASE_URL}/api/v1/`)
+      const res = await axios.get(`${BASE_URL}/api/v1/`)
         .then((res) => res.data)
         .catch((err) => console.log(err));
       console.log(res);
@@ -51,7 +50,7 @@ const Product = () => {
     <>
       <View style={{ marginTop: 40 }} className="bg-black">
         <Text style={{ color: "red", margin: 10, fontSize: 16 }}>
-          API URL: {BASE_URL}
+          API URL: {`${BASE_URL}api/v1`}
         </Text>
         <TouchableOpacity
           onPress={openDrawer}
