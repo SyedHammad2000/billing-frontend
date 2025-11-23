@@ -1,6 +1,5 @@
 import "dotenv/config";
-
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.APP_VARIANT === "production";
 
 export default ({ config }) => ({
   ...config,
