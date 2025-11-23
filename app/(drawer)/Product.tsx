@@ -25,19 +25,21 @@ const Product = () => {
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
-
   useFocusEffect(
     useCallback(() => {
-      const token = AsyncStorage.getItem("hudwater");
-      console.log("Token:", token);
-      GetAll();
+      const load = async () => {
+        const token = await AsyncStorage.getItem("hudwater");
+        console.log("Token:", token);
+        GetAll();
+      };
+      load();
     }, [])
   );
 
   const GetAll = async () => {
     try {
       const res = await axios
-        .get(`${BASE_URL}/api/v1/`)
+        .get(`${BASE_URL}/api/v1`)
         .then((res) => res.data)
         .catch((err) => console.log(err));
       console.log(res);
