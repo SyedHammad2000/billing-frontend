@@ -39,7 +39,7 @@ const Product = () => {
   const GetAll = async () => {
     try {
       const res = await axios
-        .get(`${BASE_URL}/api/v1`)
+        .get(`https://billing-backend-two.vercel.app/api/v1`)
         .then((res) => res.data)
         .catch((err) => console.log(err));
       console.log(res);

@@ -1,5 +1,3 @@
-
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -12,7 +10,6 @@ import {
 } from "react-native";
 
 console.log("Screen Loaded: HomeScreen index"); // change for each screen
-
 
 const HomeScreen: React.FC = () => {
   const router = useRouter();
@@ -45,7 +42,6 @@ const HomeScreen: React.FC = () => {
         source={require("@/assets/images/hudwater.jpeg")}
         style={{ flex: 1 }}
         resizeMode="stretch"
-        imageStyle={{ opacity: 0.5 }}
       >
         <View
           style={{
