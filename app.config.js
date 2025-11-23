@@ -61,8 +61,8 @@ export default ({ config }) => ({
   },
   extra: {
     BASE_URL: isProd
-      ? "https://billing-backend-two.vercel.app"
-      : "http://192.168.100.3:5000", // your local dev backend
+      ? "https://billing-backend.vercel.app"
+      : "https://billing-backend-two.vercel.app",
     eas: {
       projectId: "a3eb0a71-c6d6-4452-a961-ce182c5f0e6e",
     },
