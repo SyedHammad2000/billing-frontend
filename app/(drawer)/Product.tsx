@@ -38,10 +38,10 @@ const Product = () => {
 
   const GetAll = async () => {
     try {
-      const res = await axios
-        .get(`https://billing-backend-two.vercel.app/api/v1`)
-        .then((res) => res.data)
-        .catch((err) => console.log(err));
+      const res = await axios.get(
+        `https://billing-backend-two.vercel.app/api/v1`
+      );
+
       console.log(res);
       setProduct(res.data);
     } catch (error) {
