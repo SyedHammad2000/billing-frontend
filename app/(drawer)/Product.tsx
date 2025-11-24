@@ -113,7 +113,7 @@ const Product = () => {
                 }}
               >
                 <Text style={{ fontWeight: "bold" }}>Rs:{item?.price}</Text>
-                <Text style={{ fontWeight: "bold" }}>Ml:{item?.litre}</Text>
+                <Text style={{ fontWeight: "bold" }}>Litre:{item?.litre}</Text>
               </View>
             </TouchableOpacity>
           )}
