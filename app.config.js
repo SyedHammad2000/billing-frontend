@@ -48,8 +48,10 @@ export default ({ config }) => ({
         image: "./assets/images/splash-icon.png",
         imageWidth: 200,
         resizeMode: "contain",
-        backgroundColor: "white",
-        borderRadius: "100%",
+        backgroundColor: "#ffffff",
+        dark: {
+          backgroundColor: "#000000",
+        },
       },
     ],
   ],
