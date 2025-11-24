@@ -40,11 +40,14 @@
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 
-const generateInvoice = async (data: {
-  price: number;
-  quantity: number;
+const generateInvoice2 = async (data: {
   customerName: string;
-  litre: string;
+  price1: number;
+  price2: number;
+  quantity1: number;
+  quantity2: number;
+  litre1: string;
+  litre2: string;
   logoUri?: string; // optional logo
 }) => {
   let logoTag = "";
@@ -84,11 +87,27 @@ const generateInvoice = async (data: {
           </thead>
           <tbody>
             <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.litre}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.price}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.price * data.quantity}</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${data.price * data.quantity}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.litre1}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity1}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price1}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price1 * data.quantity1}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price1 * data.quantity1}</td>
+
+          
+            </tr>
+            <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.litre2}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.quantity2}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price2}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price2 * data.quantity2}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price2 * data.quantity2}</td>
+            </tr>
+            <tr>
+            <td style=" padding: 8px;"></td>
+            <td style=" padding: 8px;"></td>
+            <td style=" padding: 8px;"></td>
+            <td style=" padding: 8px;"></td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${data.price1 * data.quantity1 + data.price2 * data.quantity2}</td>
             </tr>
           </tbody>
         </table>
@@ -98,7 +117,6 @@ const generateInvoice = async (data: {
       </body>
     </html>
   `;
-
   // Generate PDF file
   const { uri } = await Print.printToFileAsync({
     html,
@@ -111,4 +129,4 @@ const generateInvoice = async (data: {
   return uri;
 };
 
-export default generateInvoice;
+export default generateInvoice2;

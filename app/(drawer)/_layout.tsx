@@ -1,9 +1,6 @@
 import { Drawer } from "expo-router/drawer";
 
-
 console.log("Screen Loaded: _layout"); // change for each screen
-
-
 
 export default function DrawerLayout() {
   return (
@@ -19,6 +16,7 @@ export default function DrawerLayout() {
     >
       <Drawer.Screen name="Product" />
       <Drawer.Screen name="AddProduct" />
+      <Drawer.Screen name="MultiInvoice" />
       <Drawer.Screen name="Logout" />
     </Drawer>
   );

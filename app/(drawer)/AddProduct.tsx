@@ -4,10 +4,15 @@ import { DrawerActions } from "@react-navigation/native";
 import axios from "axios";
 import { useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Pressable, TextInput, TouchableOpacity,Text, View } from "react-native";
+import {
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  View,
+} from "react-native";
 
 console.log("Screen Loaded AddProduct");
-
 
 const AddProduct = () => {
   const navigation = useNavigation();
@@ -114,7 +119,7 @@ const AddProduct = () => {
       </View>
       <UploadImage onUpload={(url) => setUploadedUrl(url)} reset={reset} />
 
-      <Pressable
+      <TouchableOpacity
         onPress={handleUpload}
         style={{
           backgroundColor: "black",
@@ -126,7 +131,7 @@ const AddProduct = () => {
         }}
       >
         <Text style={{ color: "white", textAlign: "center" }}>Submit</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Pressable
         style={{
           padding: 10,

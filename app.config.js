@@ -4,14 +4,14 @@ const isProd = process.env.APP_VARIANT === "production";
 export default ({ config }) => ({
   ...config,
   name: isProd ? "BillingApp" : "BillingApp-Dev",
-  slug: "billing",
+  slug: "HUDWater",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./assets/images/icon.png",
+  icon: "./assets/images/hudwater.png",
   scheme: "billing",
   userInterfaceStyle: "automatic",
   splash: {
-    image: "./assets/images/splash-icon.png",
+    image: "./assets/images/hudwater.png",
     resizeMode: "contain",
     backgroundColor: "#ffffff",
     dark: {
@@ -48,10 +48,8 @@ export default ({ config }) => ({
         image: "./assets/images/splash-icon.png",
         imageWidth: 200,
         resizeMode: "contain",
-        backgroundColor: "#ffffff",
-        dark: {
-          backgroundColor: "#000000",
-        },
+        backgroundColor: "white",
+        borderRadius: "100%",
       },
     ],
   ],

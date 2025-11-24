@@ -43,17 +43,16 @@ const ProductDetail = () => {
     try {
       if (!product) return;
 
-      const res = await axios.post(`${BASE_URL}/api/v1/invoice`, {
+      const res = await axios.post(`${BASE_URL}/api/v1/multipleinvoice`, {
         productId: product._id,
-        quantity,
-        customername,
-        price: product.price,
-        litre: product.litre,
+        quantity1: quantity,
+        customerName: customername,
+        price1: product.price,
+        litre1: product.litre,
       });
 
       console.log("Invoice saved:", res.data);
       const pdfPath = await generateInvoice({
-        productName: product.name,
         price: product.price,
         quantity: quantity || 1,
         customerName: customername,
@@ -63,6 +62,8 @@ const ProductDetail = () => {
       });
       if (res.status == 200) {
         Alert.alert("Success", "Invoice saved successfully in Database");
+      } else {
+        Alert.alert("Error", "Invoice not saved in Database");
       }
       setQuantity("");
       setCustomername("");
@@ -176,7 +177,10 @@ const ProductDetail = () => {
       <View
         style={{ alignItems: "center", display: "flex", flexDirection: "row" }}
       >
-        <Pressable onPress={handleOrder} style={{ alignItems: "center",margin:"auto" }}>
+        <Pressable
+          onPress={handleOrder}
+          style={{ alignItems: "center", margin: "auto" }}
+        >
           <Text
             style={{
               backgroundColor: "black",
@@ -184,12 +188,12 @@ const ProductDetail = () => {
               borderRadius: 10,
               color: "white",
               fontSize: 20,
-              width: "50%",
+
               marginHorizontal: "auto",
               marginBottom: 20,
             }}
           >
-            Save Invoice in Database
+            Save Invoice
           </Text>
         </Pressable>
       </View>

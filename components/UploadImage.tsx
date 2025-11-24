@@ -50,8 +50,8 @@ export default function UploadImage({
         />
       )}
       {loading && (
-        <Text style={{ marginTop: 20, color: "black" }}>
-          Wait for the Reset Pic Button then Submit it
+        <Text style={{ marginTop: 20, color: "black", fontSize: 20,alignSelf:"center" }}>
+          Wait for the Reset Pic Button then Submit.
         </Text>
       )}
     </>
