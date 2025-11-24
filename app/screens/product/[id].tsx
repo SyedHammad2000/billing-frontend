@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import {
   Alert,
   ImageBackground,
-  Pressable,
   StatusBar,
   Text,
   TextInput,
@@ -52,22 +51,23 @@ const ProductDetail = () => {
       });
 
       console.log("Invoice saved:", res.data);
-      const pdfPath = await generateInvoice({
-        price: product.price,
-        quantity: quantity || 1,
-        customerName: customername,
-        litre: product.litre,
-        logoUri:
-          "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
-      });
+
       if (res.status == 200) {
+        const pdfPath = await generateInvoice({
+          price: product.price,
+          quantity: quantity || 1,
+          customerName: customername,
+          litre: product.litre,
+          logoUri:
+            "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
+        });
+        Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
         Alert.alert("Success", "Invoice saved successfully in Database");
       } else {
         Alert.alert("Error", "Invoice not saved in Database");
       }
       setQuantity("");
       setCustomername("");
-      Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
     } catch (error) {
       console.log("Error creating invoice:", error);
       Alert.alert("Error", "Failed to create invoice");
@@ -177,7 +177,7 @@ const ProductDetail = () => {
       <View
         style={{ alignItems: "center", display: "flex", flexDirection: "row" }}
       >
-        <Pressable
+        <TouchableOpacity
           onPress={handleOrder}
           style={{ alignItems: "center", margin: "auto" }}
         >
@@ -195,7 +195,7 @@ const ProductDetail = () => {
           >
             Save Invoice
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

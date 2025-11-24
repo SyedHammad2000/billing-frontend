@@ -4,7 +4,7 @@ const isProd = process.env.APP_VARIANT === "production";
 export default ({ config }) => ({
   ...config,
   name: isProd ? "BillingApp" : "BillingApp-Dev",
-  slug: "HUDWater",
+  slug: "billing",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/hudwater.png",

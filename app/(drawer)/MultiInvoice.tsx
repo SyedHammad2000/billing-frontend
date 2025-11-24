@@ -3,14 +3,7 @@ import generateInvoice2 from "@/utils/generateInvoice2";
 import axios from "axios";
 import { router } from "expo-router";
 import React, { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MultiInvoice = () => {
@@ -33,7 +26,7 @@ const MultiInvoice = () => {
         !quantity2 ||
         !litre2
       )
-        return;
+        return Alert.alert("Error", "Please fill all the fields");
 
       const res = await axios.post(`${BASE_URL}/api/v1/multipleinvoice`, {
         customerName,
@@ -44,23 +37,25 @@ const MultiInvoice = () => {
         quantity2,
         litre2,
       });
-
       console.log("Invoice saved:", res.data);
-      const pdfPath = await generateInvoice2({
-        // price: product.price,
-        // quantity: quantity || 1,
-        customerName,
-        // litre: product.litre,
-        price1,
-        quantity1,
-        litre1,
-        price2,
-        quantity2,
-        litre2,
-        logoUri:
-          "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
-      });
+
       if (res.status == 200) {
+        const pdfPath = await generateInvoice2({
+          // price: product.price,
+          // quantity: quantity || 1,
+          customerName,
+          // litre: product.litre,
+          price1,
+          quantity1,
+          litre1,
+          price2,
+          quantity2,
+          litre2,
+          logoUri:
+            "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
+        });
+        Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
+
         Alert.alert("Success", "Invoice saved successfully in Database");
       } else {
         Alert.alert("Error", "Invoice not saved in Database");
@@ -72,8 +67,6 @@ const MultiInvoice = () => {
       setLitre2("");
       setPrice1(0);
       setPrice2(0);
-
-      Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
     } catch (error) {
       console.log("Error creating invoice:", error);
       Alert.alert("Error", "Failed to create invoice");
@@ -237,7 +230,7 @@ const MultiInvoice = () => {
           onChangeText={setQuantity2}
         />
       </View>
-      <Pressable
+      <TouchableOpacity
         onPress={handleOrder}
         style={{ alignItems: "center", margin: "auto" }}
       >
@@ -255,7 +248,7 @@ const MultiInvoice = () => {
         >
           Save Invoice
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
