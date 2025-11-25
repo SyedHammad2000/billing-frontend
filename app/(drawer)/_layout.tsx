@@ -17,6 +17,7 @@ export default function DrawerLayout() {
       <Drawer.Screen name="Product" />
       <Drawer.Screen name="AddProduct" />
       <Drawer.Screen name="MultiInvoice" />
+      <Drawer.Screen name="OrderHistory" />
       <Drawer.Screen name="Logout" />
     </Drawer>
   );
