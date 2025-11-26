@@ -1,4 +1,5 @@
 import { BASE_URL } from "@/constants/api";
+import generateInvoice2 from "@/utils/generateInvoice2";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { router, useFocusEffect } from "expo-router";
@@ -227,10 +228,24 @@ const OrderHistory = () => {
               <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 5 }}>
                 Total: {item.total}
               </Text>
-
-              <Text style={{ fontSize: 16 }}>
-                Date: {item.date.split("T")[0]}
-              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginTop: 5,
+                }}
+              >
+                <Text style={{ fontSize: 16 }}>
+                  Date: {item.date.split("T")[0]}
+                </Text>
+                <TouchableOpacity onPress={() => generateInvoice2(item)}>
+                  <Text
+                    style={{ fontSize: 16, color: "blue", fontWeight: "bold" }}
+                  >
+                    Generate Invoice
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         />

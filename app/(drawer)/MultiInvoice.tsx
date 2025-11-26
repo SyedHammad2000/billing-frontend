@@ -41,10 +41,7 @@ const MultiInvoice = () => {
 
       if (res.status == 200) {
         const pdfPath = await generateInvoice2({
-          // price: product.price,
-          // quantity: quantity || 1,
           customerName,
-          // litre: product.litre,
           price1,
           quantity1,
           litre1,
@@ -55,7 +52,6 @@ const MultiInvoice = () => {
             "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
         });
         Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
-
         Alert.alert("Success", "Invoice saved successfully in Database");
       } else {
         Alert.alert("Error", "Invoice not saved in Database");
