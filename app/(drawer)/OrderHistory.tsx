@@ -1,4 +1,5 @@
 import { BASE_URL } from "@/constants/api";
+import generateInvoice from "@/utils/generateInvoice";
 import generateInvoice2 from "@/utils/generateInvoice2";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -238,7 +239,13 @@ const OrderHistory = () => {
                 <Text style={{ fontSize: 16 }}>
                   Date: {item.date.split("T")[0]}
                 </Text>
-                <TouchableOpacity onPress={() => generateInvoice2(item)}>
+                <TouchableOpacity
+                  onPress={() =>
+                    item?.litre2
+                      ? generateInvoice2(item)
+                      : generateInvoice(item)
+                  }
+                >
                   <Text
                     style={{ fontSize: 16, color: "blue", fontWeight: "bold" }}
                   >

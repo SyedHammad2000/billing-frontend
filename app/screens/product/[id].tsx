@@ -54,10 +54,10 @@ const ProductDetail = () => {
 
       if (res.status == 200) {
         const pdfPath = await generateInvoice({
-          price: product.price,
-          quantity: quantity || 1,
+          price1: product.price,
+          quantity1: quantity || 1,
           customerName: customername,
-          litre: product.litre,
+          litre1: product.litre,
           logoUri:
             "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
         });

@@ -41,14 +41,14 @@ import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 
 const generateInvoice = async (data: {
-  price: number;
-  quantity: number;
+  price1: number;
+  quantity1: number;
   customerName: string;
-  litre: string;
+  litre1: string;
   logoUri?: string; // optional logo
 }) => {
   const items = [
-    { litre: data.litre, quantity: data.quantity, price: data.price },
+    { litre: data.litre1, quantity: data.quantity1, price: data.price1 },
   ];
 
   const rowsHtml = items

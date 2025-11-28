@@ -57,7 +57,7 @@ const AddProduct = () => {
   }, [reset]);
 
   return (
-    <View style={{ marginTop: 40 }} className="bg-black">
+    <View style={{ marginTop: 40 }}>
       <TouchableOpacity
         onPress={openDrawer}
         style={{ position: "absolute", left: 10 }}

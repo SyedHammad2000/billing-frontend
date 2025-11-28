@@ -92,7 +92,7 @@ import * as Sharing from "expo-sharing";
 const generateInvoice2 = async (data: any) => {
   const items = [
     { id: 1, litre: data.litre1, quantity: data.quantity1, price: data.price1 },
-    { id: 2, litre: data.litre2, quantity: data.quantity2, price: data.price2 },
+    { id: 2, litre: data?.litre2, quantity: data?.quantity2, price: data?.price2 },
   ];
 
   const rowsHtml = items

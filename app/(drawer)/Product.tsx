@@ -4,7 +4,6 @@ import React, { useCallback } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import axios from "axios";
 import { FlatList } from "react-native-gesture-handler";
-import ".././../global.css";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "@/constants/api";
 
@@ -50,7 +49,7 @@ const Product = () => {
 
   return (
     <>
-      <View style={{ marginTop: 40 }} className="bg-black">
+      <View style={{ marginTop: 40 }}>
         <TouchableOpacity
           onPress={openDrawer}
           style={{ position: "absolute", left: 10 }}
