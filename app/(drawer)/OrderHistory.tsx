@@ -194,7 +194,7 @@ const OrderHistory = () => {
               }}
             >
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                Invoice #: {index + 1}
+                OrderNo: {index + 1}
               </Text>
 
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>

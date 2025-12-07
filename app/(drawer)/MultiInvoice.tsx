@@ -48,8 +48,7 @@ const MultiInvoice = () => {
           price2,
           quantity2,
           litre2,
-          logoUri:
-            "https://upcdn.io/W23MTSj/raw/uploads/2025/11/21/4jMQpU3TJY-upload.jpg",
+          logoUri: "https://i.ibb.co/PzW9cb9G/hudwater.png",
         });
         Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
         Alert.alert("Success", "Invoice saved successfully in Database");
