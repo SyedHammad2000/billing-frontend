@@ -242,8 +242,23 @@ const OrderHistory = () => {
                 <TouchableOpacity
                   onPress={() =>
                     item?.litre2
-                      ? generateInvoice2(item)
-                      : generateInvoice(item)
+                      ? generateInvoice2({
+                          customerName: item.customerName,
+                          litre1: item.litre1,
+                          quantity1: item.quantity1,
+                          price1: item.price1,
+                          litre2: item.litre2,
+                          quantity2: item.quantity2,
+                          price2: item.price2,
+                          logoUri: "https://i.ibb.co/PzW9cb9G/hudwater.png",
+                        })
+                      : generateInvoice({
+                          customerName: item.customerName,
+                          litre1: item.litre1,
+                          quantity1: item.quantity1,
+                          price1: item.price1,
+                          logoUri: "https://i.ibb.co/PzW9cb9G/hudwater.png",
+                        })
                   }
                 >
                   <Text
