@@ -117,7 +117,7 @@ const generateInvoice2 = async (data: any) => {
 <html>
   <body style="font-family: monospace; font-size: 11px; width: 450px;  color: #000; padding: 2px;">
     <div style="text-align:center; margin-bottom:2px;">
-      ${data.logoUri ? `<img src="${data.logoUri}" style="width:50px; height:auto; margin-bottom:2px;" />` : ""}
+      ${data.logoUri ? `<img src="${data?.logoUri}" style="width:50px; height:auto; margin-bottom:2px;" />` : ""}
       <div style="font-size:13px; margin-top:2px; font-weight:bold;">MAKE YOUR OWN BOTTLE</div>
       <hr style="border-top:1px dashed #000; margin:2px 0;" />
     </div>
