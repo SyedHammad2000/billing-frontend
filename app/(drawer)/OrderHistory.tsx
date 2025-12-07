@@ -208,8 +208,8 @@ const OrderHistory = () => {
                 }}
               >
                 <Text style={{ fontSize: 18 }}>Qty: {item.quantity1}</Text>
-                <Text style={{ fontSize: 18 }}>Price: {item.price1}</Text>
-                <Text style={{ fontSize: 18 }}>Litre: {item.litre1}</Text>
+                <Text style={{ fontSize: 18 }}>Prc: {item.price1}</Text>
+                <Text style={{ fontSize: 18 }}>Ltr: {item.litre1}</Text>
               </View>
 
               {item.quantity2 > 0 && (
@@ -221,8 +221,8 @@ const OrderHistory = () => {
                   }}
                 >
                   <Text style={{ fontSize: 18 }}>Qty: {item.quantity2}</Text>
-                  <Text style={{ fontSize: 18 }}>Price: {item.price2}</Text>
-                  <Text style={{ fontSize: 18 }}>Litre: {item.litre2}</Text>
+                  <Text style={{ fontSize: 18 }}>Prc: {item.price2}</Text>
+                  <Text style={{ fontSize: 18 }}>Ltr: {item.litre2}</Text>
                 </View>
               )}
 
