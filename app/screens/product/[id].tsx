@@ -1,5 +1,6 @@
 import { BASE_URL } from "@/constants/api";
 import generateInvoice from "@/utils/generateInvoice";
+import generateInvoice2 from "@/utils/generateInvoice2";
 import axios from "axios";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -19,8 +20,8 @@ console.log("Screen Loaded: [id]");
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
   const [product, setProduct] = useState<any>(null);
-  const [quantity, setQuantity] = useState<any>("");
-  const [customername, setCustomername] = useState("");
+  const [quantity1, setQuantity1] = useState<any>("");
+  const [quantity2, setQuantity2] = useState<any>("");
 
   const fetchProduct = async () => {
     try {
@@ -44,20 +45,40 @@ const ProductDetail = () => {
 
       const res = await axios.post(`${BASE_URL}/api/v1/multipleinvoice`, {
         productId: product._id,
-        quantity1: quantity,
-        customerName: customername,
-        price1: product.price,
-        litre1: product.litre,
+        quantity1,
+        customerName: product.customerName,
+        price1: product.price1,
+        litre1: product.litre1,
+        quantity2,
+        price2: product.price2,
+        litre2: product.litre2,
       });
 
       console.log("Invoice saved:", res.data);
 
       if (res.status == 200) {
+        if (quantity2 && product.price2 > 0 && product.litre2) {
+          const pdfPath = await generateInvoice2({
+            price1: product.price1,
+            quantity1: quantity1 || 1,
+            price2: product.price2,
+            quantity2: quantity2 || 1,
+            customerName: product.customerName,
+            litre1: product.litre1,
+            litre2: product.litre2,
+            logoUri: "https://i.ibb.co/PzW9cb9G/hudwater.png",
+          });
+          Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
+          Alert.alert("Success", "Invoice saved successfully in Database");
+          setQuantity1("");
+          setQuantity2("");
+          return;
+        }
         const pdfPath = await generateInvoice({
-          price1: product.price,
-          quantity1: quantity || 1,
-          customerName: customername,
-          litre1: product.litre,
+          price1: product.price1,
+          quantity1: quantity1 || 1,
+          customerName: product.customerName,
+          litre1: product.litre1,
           logoUri: "https://i.ibb.co/PzW9cb9G/hudwater.png",
         });
         Alert.alert("PDF Generated", `PDF saved at: ${pdfPath}`);
@@ -65,8 +86,8 @@ const ProductDetail = () => {
       } else {
         Alert.alert("Error", "Invoice not saved in Database");
       }
-      setQuantity("");
-      setCustomername("");
+      setQuantity1("");
+      setQuantity2("");
     } catch (error) {
       console.log("Error creating invoice:", error);
       Alert.alert("Error", "Failed to create invoice");
@@ -118,10 +139,10 @@ const ProductDetail = () => {
       </TouchableOpacity>
 
       <TextInput
-        value={quantity}
-        onChangeText={setQuantity}
-        placeholder="Quantity"
-        placeholderTextColor={"black"}
+        value={quantity1}
+        onChangeText={setQuantity1}
+        placeholder="Quantity-1"
+        placeholderTextColor={"gray"}
         style={{
           height: 40,
           borderColor: "gray",
@@ -133,23 +154,24 @@ const ProductDetail = () => {
           color: "black",
         }}
       />
-
-      <TextInput
-        value={customername}
-        onChangeText={setCustomername}
-        placeholder="Customer Name"
-        placeholderTextColor={"black"}
-        style={{
-          height: 40,
-          borderColor: "gray",
-          borderWidth: 1,
-          margin: 10,
-          padding: 10,
-          borderRadius: 10,
-          marginTop: 20,
-          color: "black",
-        }}
-      />
+      {product?.litre2 && (
+        <TextInput
+          value={quantity2}
+          onChangeText={setQuantity2}
+          placeholder="Quantity-2"
+          placeholderTextColor={"gray"}
+          style={{
+            height: 40,
+            borderColor: "gray",
+            borderWidth: 1,
+            margin: 10,
+            padding: 10,
+            borderRadius: 10,
+            marginTop: 20,
+            color: "black",
+          }}
+        />
+      )}
 
       <View
         style={{
@@ -161,17 +183,43 @@ const ProductDetail = () => {
           borderRadius: 20,
         }}
       >
-        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-          Name: {product?.name}
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          Name: {product?.customerName}
         </Text>
-
-        <Text style={{ fontSize: 30, marginTop: 10, fontWeight: "bold" }}>
-          Price: {product?.price}
-        </Text>
-
-        <Text style={{ fontSize: 30, marginTop: 10, fontWeight: "bold" }}>
-          {product?.litre}
-        </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
+            1# Litre:
+            {product?.litre1}
+          </Text>
+          <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
+            Price: {product?.price1}
+          </Text>
+        </View>
+        {/* bottomline */}
+        <View style={{ height: 1, backgroundColor: "black", marginTop: 10 }} />
+        {product?.litre2 && (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
+              2# Litre:
+              {product?.litre2}
+            </Text>
+            <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
+              Price: {product?.price2}
+            </Text>
+          </View>
+        )}
       </View>
       <View
         style={{ alignItems: "center", display: "flex", flexDirection: "row" }}

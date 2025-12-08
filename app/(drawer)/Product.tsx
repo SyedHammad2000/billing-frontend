@@ -11,9 +11,11 @@ console.log("Screen Loaded Product");
 
 type Products = {
   _id: string;
-  name: string;
-  price: number;
-  litre: string;
+  customerName: string;
+  price1: number;
+  price2: number;
+  litre1: string;
+  litre2: string;
   image?: string;
 };
 
@@ -99,11 +101,11 @@ const Product = () => {
                   source={{ uri: item?.image }}
                   style={{ width: "100%", height: 200, borderRadius: 10 }}
                   // resizeMode="cover"
-                  alt={item?.name}
+                  alt={item?.customerName}
                 />
               </View>
               <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 10 }}>
-                {item?.name}
+                {item?.customerName}
               </Text>
               <View
                 style={{
@@ -111,8 +113,22 @@ const Product = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Text style={{ fontWeight: "bold" }}>Rs:{item?.price}</Text>
-                <Text style={{ fontWeight: "bold" }}>Litre:{item?.litre}</Text>
+                <Text style={{ fontWeight: "bold" }}>Rs:{item?.price1}</Text>
+                <Text style={{ fontWeight: "bold" }}>Litre:{item?.litre1}</Text>
+              </View>
+              {}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={{ fontWeight: "bold" }}>
+                  {item?.price2 ? `Rs:${item?.price2}` : ""}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  {item?.litre2 ? `Litre:${item?.litre2}` : ""}
+                </Text>
               </View>
             </TouchableOpacity>
           )}

@@ -19,29 +19,34 @@ const AddProduct = () => {
   const [reset, setReset] = useState(false);
 
   const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
+  const [productPrice1, setProductPrice1] = useState("");
+  const [productPrice2, setProductPrice2] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
-  const [litre, setLitre] = useState("");
+  const [litre1, setLitre1] = useState("");
+  const [litre2, setLitre2] = useState("");
   // public_W23MTSjFo8MYvm4UESmym8n3wSLh
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
 
   const handleUpload = async (e: any) => {
-    if (!productName || !productPrice || !litre) {
+    if (!productName || !productPrice1 || !litre1) {
       return alert("Please fill all the fields");
     }
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/add`, {
-        name: productName,
-        price: productPrice,
-        litre,
-        image: uploadedUrl,
+        customerName: productName,
+        price1: productPrice1,
+        litre1,
+        price2: productPrice2,
+        litre2,
       });
       console.log(res);
       setProductName("");
-      setProductPrice("");
-      setLitre("");
+      setProductPrice1("");
+      setLitre1("");
+      setProductPrice2("");
+      setLitre2("");
       setUploadedUrl("");
 
       setReset(true);
@@ -95,29 +100,61 @@ const AddProduct = () => {
             marginTop: 20,
             color: "black",
           }}
-          placeholder="Price"
+          placeholder="Litre-1"
           placeholderTextColor="#999"
-          value={productPrice?.toString()}
-          onChangeText={setProductPrice}
-        />
-        <TextInput
-          style={{
-            height: 40,
-            borderColor: "gray",
-            borderWidth: 1,
-            margin: 10,
-            padding: 10,
-            borderRadius: 10,
-            marginTop: 20,
-            color: "black",
-          }}
-          placeholder="Litre"
-          placeholderTextColor="#999"
-          value={litre}
-          onChangeText={setLitre}
+          value={litre1}
+          onChangeText={setLitre1}
         />
       </View>
-      <UploadImage onUpload={(url) => setUploadedUrl(url)} reset={reset} />
+      <TextInput
+        style={{
+          height: 40,
+          borderColor: "gray",
+          borderWidth: 1,
+          margin: 10,
+          padding: 10,
+          borderRadius: 10,
+          marginTop: 20,
+          color: "black",
+        }}
+        placeholder="Price-1"
+        placeholderTextColor="#999"
+        value={productPrice1?.toString()}
+        onChangeText={setProductPrice1}
+      />
+      <TextInput
+        style={{
+          height: 40,
+          borderColor: "gray",
+          borderWidth: 1,
+          margin: 10,
+          padding: 10,
+          borderRadius: 10,
+          marginTop: 20,
+          color: "black",
+        }}
+        placeholder="Litre-2"
+        placeholderTextColor="#999"
+        value={litre2}
+        onChangeText={setLitre2}
+      />
+      <TextInput
+        style={{
+          height: 40,
+          borderColor: "gray",
+          borderWidth: 1,
+          margin: 10,
+          padding: 10,
+          borderRadius: 10,
+          marginTop: 20,
+          color: "black",
+        }}
+        placeholder="Price-2"
+        placeholderTextColor="#999"
+        value={productPrice2?.toString()}
+        onChangeText={setProductPrice2}
+      />
+      {/* <UploadImage onUpload={(url) => setUploadedUrl(url)} reset={reset} /> */}
 
       <TouchableOpacity
         onPress={handleUpload}
